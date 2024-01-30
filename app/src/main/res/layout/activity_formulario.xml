@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewClientName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Cliente"/>
+
+    <EditText
+        android:id="@+id/editTextClientName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewClientName"
+        android:layout_marginTop="8dp"
+        android:hint="Ingrese el nombre del cliente"
+        android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/textViewAppointmentDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextClientName"
+        android:layout_marginTop="16dp"
+        android:text="Fecha y Hora de la Cita"/>
+
+    <EditText
+        android:id="@+id/editTextAppointmentDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewAppointmentDate"
+        android:layout_marginTop="8dp"
+        android:hint="Ingrese la fecha y hora de la cita"
+        android:inputType="text"/>
+
+    <Button
+        android:id="@+id/buttonSaveAppointment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextAppointmentDate"
+        android:layout_marginTop="16dp"
+        android:text="Guardar Cita"/>
+
+</RelativeLayout>
