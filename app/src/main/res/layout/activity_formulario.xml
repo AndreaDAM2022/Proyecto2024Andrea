@@ -1,54 +1,59 @@
-<!-- res/layout/activity_main.xml -->
+<!-- res/layout/form_layout.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:padding="16dp"
+    android:background="@android:color/background_light">
 
-    <TextView
-        android:id="@+id/textViewName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nombre:"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"/>
+    <!-- Logo o Encabezado -->
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_nail_logo"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"/>
 
+    <!-- Nombre -->
     <EditText
         android:id="@+id/editTextName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewName"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Ingrese el nombre"/>
+        style="@style/EditTextStyle"
+        android:hint="Nombre" />
 
-    <TextView
-        android:id="@+id/textViewPhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Número de teléfono:"
+    <!-- Correo electrónico -->
+    <EditText
+        android:id="@+id/editTextEmail"
+        style="@style/EditTextStyle"
         android:layout_below="@id/editTextName"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"/>
+        android:hint="Correo electrónico"
+        android:inputType="textEmailAddress" />
 
+    <!-- Teléfono -->
     <EditText
-        android:id="@+id/editTextPhoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewPhoneNumber"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:inputType="phone"
-        android:hint="Ingrese el número de teléfono"/>
-
-    <!-- Agrega más campos según sea necesario -->
-
-    <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextPhoneNumber"
+        android:id="@+id/editTextPhone"
+        style="@style/EditTextStyle"
+        android:layout_below="@id/editTextEmail"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:text="Guardar"/>
+        android:hint="Teléfono"
+        android:inputType="phone" />
+
+    <!-- Servicios Spinner -->
+    <Spinner
+        android:id="@+id/spinnerServices"
+        style="@style/SpinnerStyle"
+        android:layout_below="@id/editTextPhone"
+        android:layout_marginTop="16dp"
+        android:entries="@array/services_array"
+        android:prompt="Servicios de uñas preferidos" />
+
+    <!-- Botón de Registro -->
+    <Button
+        android:id="@+id/btnRegister"
+        style="@style/ButtonStyle"
+        android:layout_below="@id/spinnerServices"
+        android:layout_marginTop="24dp"
+        android:text="Registrarse" />
+
 </RelativeLayout>
