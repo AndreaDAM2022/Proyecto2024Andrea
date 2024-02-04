@@ -13,7 +13,7 @@
         android:src="@drawable/andrea" />
 
     <EditText
-        android:id="@+id/editTextUsername"
+        android:id="@+id/User1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageViewLogo"
@@ -22,10 +22,10 @@
         android:inputType="text"/>
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/Password1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextUsername"
+        android:layout_below="@id/User1"
         android:layout_marginTop="16dp"
         android:hint="Contraseña"
         android:inputType="textPassword"/>
@@ -34,12 +34,12 @@
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextPassword"
+        android:layout_below="@id/Password1"
         android:layout_marginTop="16dp"
         android:text="Iniciar Sesión"/>
 
     <Button
-        android:id="@+id/buttonRegister"
+        android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonLogin"

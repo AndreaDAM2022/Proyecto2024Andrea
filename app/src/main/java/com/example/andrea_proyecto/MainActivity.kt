@@ -12,17 +12,56 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val username = findViewById<EditText>(R.id.editTextUsername)
-        val password = findViewById<EditText>(R.id.editTextPassword)
-        val butnRegistro  = findViewById<Button>(R.id.buttonRegister)
+                val editTextUsername1 = findViewById<EditText>(R.id.User1)
+                val editTextPassword2 = findViewById<EditText>(R.id.Password1)
+                val btnLogin = findViewById<Button>(R.id.button1)
 
-        butnRegistro.setOnClickListener(){
-            if (username.text.toString() == password.text.toString()){ //El "toString" lo utilizamos para poder acceder mediante números y caracteres
-                val intent = Intent(this@MainActivity, Formulario::class.java)
-                startActivity(intent)
-            } else{
-                Toast.makeText(this, "Usuario y Contraseña no válidos", Toast.LENGTH_LONG).show()
+                btnLogin.setOnClickListener {
+                    val username = editTextUsername1.text.toString()
+                    val password = editTextPassword2.text.toString()
+
+                    // Verificar las credenciales (en este ejemplo, usuario: "user", contraseña: "password")
+
+                    if (username == "user" && password == "password") {
+
+                        // Credenciales correctas, iniciar la actividad del formulario
+
+                        val intent = Intent(
+                            this@MainActivity,
+                            Formulario::class.java
+                        )
+                        startActivity(intent)
+                    } else {
+                        // Credenciales incorrectas, mostrar un mensaje de error
+                        // (en una aplicación real, debes manejar las credenciales de forma segura)
+                        showMessage("Credenciales incorrectas. Inténtalo de nuevo.")
+                    }
+                }
+            }
+
+            private fun showMessage(message: String) {
+                // Puedes mostrar el mensaje en un Toast, Snackbar, o cualquier otro componente de la interfaz de usuario
+              Toast.makeText(this, "Usuario y Contraseña no válidos", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,64 +3,57 @@ package com.example.andrea_proyecto
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 
 class Formulario : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_formulario)
 
-        private lateinit var viewModel: MainViewModel
+                val editTextName: EditText = findViewById(R.id.editTextName)
+                val editTextEmail: EditText = findViewById(R.id.editTextEmail)
+                val editTextPhone: EditText = findViewById(R.id.editTextPhone)
+                val spinnerGender: Spinner = findViewById(R.id.spinnerGender)
+                val checkBoxSubscribe: CheckBox = findViewById(R.id.checkBoxSubscribe)
+                val btnSubmit: Button = findViewById(R.id.btnSubmit)
 
-        val editTextName: EditText = findViewById(R.id.editTextName)
-        val editTextEmail: EditText = findViewById(R.id.editTextEmail)
-        val editTextPhone: EditText = findViewById(R.id.editTextPhone)
-        val spinnerServices: Spinner = findViewById(R.id.spinnerServices)
-        val btnRegister: Button = findViewById(R.id.btnRegister)
+                // Configurar el adaptador para el spinner con las opciones de género
+                val genderAdapter = ArrayAdapter.createFromResource(
+                    this,
+                    R.array.gender_array,
+                    android.R.layout.simple_spinner_item
+                )
+                genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinnerGender.adapter = genderAdapter
 
-        // Configurar el adaptador para el spinner con los servicios de uñas
-        val servicesAdapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.services_array,
-            android.R.layout.simple_spinner_item
-        )
-        servicesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerServices.adapter = servicesAdapter
+                btnSubmit.setOnClickListener {
+                    val name = editTextName.text.toString()
+                    val email = editTextEmail.text.toString()
+                    val phone = editTextPhone.text.toString()
+                    val gender = spinnerGender.selectedItem.toString()
+                    val subscribeToNewsletter = checkBoxSubscribe.isChecked
 
-        btnRegister.setOnClickListener {
-            val name = editTextName.text.toString()
-            val email = editTextEmail.text.toString()
-            val phone = editTextPhone.text.toString()
-            val selectedService = spinnerServices.selectedItem.toString()
-
-            if (validateInputs(name, email, phone)) {
-                val client = Client(name, email, phone, selectedService)
-                if (viewModel.registerClient(client)) {
-                    // Registro exitoso, puedes mostrar un mensaje de éxito
-                    showMessage("Cliente registrado exitosamente.")
-                } else {
-                    // Fallo en el registro, puedes mostrar un mensaje de error
-                    showMessage("Error al registrar al cliente. Inténtalo de nuevo.")
+                    if (validateInputs(name, email, phone)) {
+                        // Aquí puedes realizar la lógica de envío de datos (por ejemplo, a un servidor)
+                        // Puedes agregar más lógica según tus requisitos
+                        showMessage("Datos enviados:\nNombre: $name\nCorreo: $email\nTeléfono: $phone\nGénero: $gender\nSuscripción al boletín: $subscribeToNewsletter")
+                    }
                 }
             }
-        }
-    }
 
-    private fun validateInputs(name: String, email: String, phone: String): Boolean {
-        // Aquí puedes agregar validaciones adicionales según tus requisitos
-        if (name.isEmpty() || email.isEmpty() || phone.isEmpty()) {
-            showMessage("Por favor, completa todos los campos.")
-            return false
-        }
+            private fun validateInputs(name: String, email: String, phone: String): Boolean {
+                if (name.isEmpty() || email.isEmpty() || phone.isEmpty()) {
+                    showMessage("Por favor, completa todos los campos.")
+                    return false
+                }
+                return true
+            }
 
-        return true
-    }
-
-    private fun showMessage(message: String) {
-        // Puedes mostrar el mensaje en un Toast, Snackbar, o cualquier otro componente de la interfaz de usuario
-        // Por ejemplo, Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
+            private fun showMessage(message: String) {
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+            }
 }
