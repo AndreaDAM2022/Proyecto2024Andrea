@@ -19,9 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageLogo"
         android:layout_marginTop="16dp"
-        android:hint="Nombre"
-        android:inputType="textCapWords"
-        android:maxLines="1" />
+        android:hint="Nombre" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -30,8 +28,7 @@
         android:layout_below="@id/editTextName"
         android:layout_marginTop="16dp"
         android:hint="Correo electrónico"
-        android:inputType="textEmailAddress"
-        android:maxLines="1" />
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/editTextPhone"
@@ -40,34 +37,14 @@
         android:layout_below="@id/editTextEmail"
         android:layout_marginTop="16dp"
         android:hint="Teléfono"
-        android:inputType="phone"
-        android:maxLines="1" />
-
-    <Spinner
-        android:id="@+id/spinnerGender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextPhone"
-        android:layout_marginTop="16dp"
-        android:entries="@array/gender_array"
-        android:prompt="Género" />
-
-    <CheckBox
-        android:id="@+id/checkBoxSubscribe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/spinnerGender"
-        android:layout_marginTop="16dp"
-        android:text="Suscribirse al boletín" />
+        android:inputType="phone" />
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/checkBoxSubscribe"
+        android:layout_below="@id/editTextPhone"
         android:layout_marginTop="24dp"
-        android:text="Enviar"
-        android:background="@color/colorPrimary"
-        android:textColor="@android:color/white" />
+        android:text="Enviar" />
 
 </RelativeLayout>
