@@ -47,4 +47,12 @@
         android:layout_marginTop="24dp"
         android:text="Enviar" />
 
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPhone"
+        android:layout_marginTop="84dp"
+        android:text="Volver" />
+
 </RelativeLayout>

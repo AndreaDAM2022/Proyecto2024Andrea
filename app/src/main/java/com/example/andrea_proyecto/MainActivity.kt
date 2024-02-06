@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
                     // Verificar las credenciales (en este ejemplo, usuario: "user", contraseña: "password")
 
-                    if (username == "user" && password == "password") {
+                    if (username == "Andrea" && password == "QAZpnm123@") {
 
                         // Credenciales correctas, iniciar la actividad del formulario
 

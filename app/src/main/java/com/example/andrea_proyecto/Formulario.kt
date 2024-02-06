@@ -1,5 +1,6 @@
 package com.example.andrea_proyecto
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -15,6 +16,7 @@ class Formulario : AppCompatActivity() {
                 val editTextEmail: EditText = findViewById(R.id.editTextEmail)
                 val editTextPhone: EditText = findViewById(R.id.editTextPhone)
                 val btnSubmit: Button = findViewById(R.id.btnSubmit)
+                val btnVolver: Button = findViewById(R.id.btnVolver)
 
                 btnSubmit.setOnClickListener {
                     val name = editTextName.text.toString()
@@ -25,6 +27,11 @@ class Formulario : AppCompatActivity() {
                     // En este ejemplo, simplemente mostraremos un mensaje con la información ingresada
                     showMessage("Nombre: $name\nCorreo: $email\nTeléfono: $phone")
                 }
+
+        btnVolver.setOnClickListener () {
+            val intent = Intent(this@Formulario, MainActivity::class.java)
+            startActivity(intent)
+        }
             }
 
             private fun showMessage(message: String) {
