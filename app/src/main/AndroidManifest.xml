@@ -13,6 +13,18 @@
         android:theme="@style/Theme.Andrea_Proyecto"
         tools:targetApi="31">
         <activity
+            android:name=".VerCitas"
+            android:exported="false" />
+        <activity
+            android:name=".CitasContract"
+            android:exported="false" />
+        <activity
+            android:name=".DBHelper"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".Calendario"
             android:exported="false" />
         <activity

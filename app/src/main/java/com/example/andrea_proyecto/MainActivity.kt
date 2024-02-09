@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
                         val intent = Intent(
                             this@MainActivity,
-                            Formulario::class.java
+                            Calendario::class.java
                         )
                         startActivity(intent)
                     } else {

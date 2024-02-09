@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".Calendario">
 
     <CalendarView
@@ -11,5 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <EditText
+        android:id="@+id/editTextCita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calendarView"
+        android:hint="Añadir cita"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/buttonGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextCita"
+        android:layout_alignParentEnd="true"
+        android:text="Guardar"/>
+
+    <Button
+        android:id="@+id/buttonVerCitas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonGuardar"
+        android:layout_marginTop="16dp"
+        android:text="Ver Citas"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>

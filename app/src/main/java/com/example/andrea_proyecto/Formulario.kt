@@ -23,8 +23,6 @@ class Formulario : AppCompatActivity() {
                     val email = editTextEmail.text.toString()
                     val phone = editTextPhone.text.toString()
 
-                    // Puedes realizar acciones con los datos ingresados aquí, por ejemplo, enviarlos a un servidor
-                    // En este ejemplo, simplemente mostraremos un mensaje con la información ingresada
                     showMessage("Nombre: $name\nCorreo: $email\nTeléfono: $phone")
                 }
 
