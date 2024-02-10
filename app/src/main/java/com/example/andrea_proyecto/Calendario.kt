@@ -1,99 +1,97 @@
-package com.example.andrea_proyecto
-
-import android.content.Intent
 import android.content.ContentValues
-import android.content.Context
-import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
+import android.database.Cursor
 import android.os.Bundle
 import android.widget.Button
-import android.widget.CalendarView
+import android.widget.DatePicker
 import android.widget.EditText
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class Calendario : AppCompatActivity() {
-
-    private lateinit var calendarView: CalendarView
-    private lateinit var editTextCita: EditText
-    private lateinit var buttonGuardar: Button
-    private lateinit var database: SQLiteDatabase
+    private lateinit var datePicker: DatePicker
+    private lateinit var editTextName: EditText
+    private lateinit var textViewCitas: TextView
+    private lateinit var dbHelper: DBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_calendario)
+        setContentView(R.layout.activity_main)
 
-        val buttonVerCitas: Button = findViewById(R.id.buttonVerCitas)
-        buttonVerCitas.setOnClickListener {
-            val intent = Intent(this, VerCitas::class.java)
-            startActivity(intent)
+        dbHelper = DBHelper(this)
+
+        datePicker = findViewById(R.id.datePicker)
+        editTextName = findViewById(R.id.editTextName)
+        val buttonAdd = findViewById<Button>(R.id.buttonAdd)
+        val buttonDelete = findViewById<Button>(R.id.buttonDelete)
+        textViewCitas = findViewById(R.id.textViewCitas)
+
+        buttonAdd.setOnClickListener {
+            addCita()
         }
 
-        calendarView = findViewById(R.id.calendarView)
-        editTextCita = findViewById(R.id.editTextCita)
-        buttonGuardar = findViewById(R.id.buttonGuardar)
-
-        val dbHelper = DBHelper(this)
-        database = dbHelper.writableDatabase
-
-        buttonGuardar.setOnClickListener {
-            val date = calendarView.date
-            val cita = editTextCita.text.toString()
-            if (cita.isNotBlank()) {
-                guardarCita(date, cita)
-                editTextCita.text.clear()
-                Toast.makeText(this, "Cita guardada correctamente", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Por favor, introduce una cita", Toast.LENGTH_SHORT).show()
-            }
+        buttonDelete.setOnClickListener {
+            deleteCita()
         }
 
-        calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            val selectedDate = "$dayOfMonth/${month + 1}/$year"
-            Toast.makeText(this, "Fecha seleccionada: $selectedDate", Toast.LENGTH_SHORT).show()
-        }
+        viewCitas()
     }
 
-    private fun guardarCita(date: Long, cita: String) {
+    private fun addCita() {
+        val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
-            put(DBHelper.COLUMN_DATE, date)
-            put(DBHelper.COLUMN_CITA, cita)
+            put(CitasContract.CitasEntry.COLUMN_DATE, getDateFromDatePicker())
+            put(CitasContract.CitasEntry.COLUMN_NAME, editTextName.text.toString())
         }
-        database.insert(DBHelper.TABLE_NAME, null, values)
+
+        val newRowId = db?.insert(CitasContract.CitasEntry.TABLE_NAME, null, values)
+
+        editTextName.setText("")
+        viewCitas()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        database.close()
+    private fun deleteCita() {
+        val db = dbHelper.writableDatabase
+        val selection = "${CitasContract.CitasEntry.COLUMN_DATE} = ?"
+        val selectionArgs = arrayOf(getDateFromDatePicker())
+
+        val deletedRows = db.delete(CitasContract.CitasEntry.TABLE_NAME, selection, selectionArgs)
+
+        viewCitas()
+    }
+
+    private fun getDateFromDatePicker(): String {
+        val day = datePicker.dayOfMonth
+        val month = datePicker.month + 1 // El índice de los meses empieza desde 0
+        val year = datePicker.year
+        return "$year-$month-$day"
+    }
+
+    private fun viewCitas() {
+        val db = dbHelper.readableDatabase
+        val projection = arrayOf(
+            CitasContract.CitasEntry._ID,
+            CitasContract.CitasEntry.COLUMN_DATE,
+            CitasContract.CitasEntry.COLUMN_NAME
+        )
+
+        val cursor: Cursor = db.query(
+            CitasContract.CitasEntry.TABLE_NAME,
+            projection,
+            null,
+            null,
+            null,
+            null,
+            null
+        )
+
+        val citas = StringBuilder()
+        while (cursor.moveToNext()) {
+            val date = cursor.getString(cursor.getColumnIndexOrThrow(CitasContract.CitasEntry.COLUMN_DATE))
+            val name = cursor.getString(cursor.getColumnIndexOrThrow(CitasContract.CitasEntry.COLUMN_NAME))
+            citas.append("Fecha: $date, Cliente: $name\n")
+        }
+        cursor.close()
+
+        textViewCitas.text = citas.toString()
     }
 }
-
-class DBHelper(context: Context) :
-    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
-
-    override fun onCreate(db: SQLiteDatabase) {
-        val createTableSQL = """
-            CREATE TABLE $TABLE_NAME (
-                $COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                $COLUMN_DATE INTEGER,
-                $COLUMN_CITA TEXT
-            )
-        """.trimIndent()
-        db.execSQL(createTableSQL)
-    }
-
-    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
-        onCreate(db)
-    }
-
-    companion object {
-        const val DATABASE_NAME = "citas_db"
-        const val DATABASE_VERSION = 1
-        const val TABLE_NAME = "citas"
-        const val COLUMN_ID = "id"
-        const val COLUMN_DATE = "fecha"
-        const val COLUMN_CITA = "cita"
-    }
-}
-
