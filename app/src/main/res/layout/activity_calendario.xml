@@ -1,47 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".Calendario">
 
-    <TextView
-        android:id="@+id/textViewCitas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Citas:"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewCitas"
-        android:layout_marginTop="16dp" />
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <EditText
-        android:id="@+id/editTextName"
+        android:id="@+id/editTextCita"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:layout_below="@id/datePicker"
-        android:layout_marginTop="16dp"
-        android:hint="Nombre del cliente"
-        android:inputType="text" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calendarView"
+        android:hint="Añadir cita"/>
 
     <Button
-        android:id="@+id/buttonAdd"
+        android:id="@+id/buttonGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextName"
-        android:layout_marginTop="16dp"
-        android:text="Añadir cita" />
-
-    <Button
-        android:id="@+id/buttonDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonAdd"
-        android:layout_marginTop="16dp"
-        android:text="Eliminar cita" />
+        android:layout_below="@id/editTextCita"
+        android:layout_alignParentEnd="true"
+        android:text="Guardar"/>
 
 </RelativeLayout>

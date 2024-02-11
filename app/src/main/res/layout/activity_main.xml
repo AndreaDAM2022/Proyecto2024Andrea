@@ -44,6 +44,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonLogin"
         android:layout_marginTop="8dp"
-        android:text="Registrarse"/>
+        android:text="Coger Cita" />
 
 </RelativeLayout>

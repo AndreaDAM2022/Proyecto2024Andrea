@@ -2,14 +2,13 @@ package com.example.andrea_proyecto
 
 import android.content.Intent
 import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-class VerCitas : AppCompatActivity() {
+class VerCitasActivity : AppCompatActivity() {
 
     private lateinit var listViewCitas: ListView
     private lateinit var database: SQLiteDatabase
@@ -17,12 +16,6 @@ class VerCitas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ver_citas)
-
-        val buttonVolver: Button = findViewById(R.id.buttonVolver)
-        buttonVolver.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
 
         listViewCitas = findViewById(R.id.listViewCitas)
 
@@ -45,7 +38,7 @@ class VerCitas : AppCompatActivity() {
 
         val citasList = mutableListOf<String>()
         while (cursor.moveToNext()) {
-            val cita = cursor.getString(with(cursor) { getColumnIndex(DBHelper.COLUMN_CITA) })
+            val cita = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_CITA))
             citasList.add(cita)
         }
         cursor.close()

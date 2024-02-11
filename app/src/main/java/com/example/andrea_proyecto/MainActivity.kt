@@ -1,5 +1,4 @@
 package com.example.andrea_proyecto
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,13 +21,12 @@ class MainActivity : AppCompatActivity() {
 
                     // Verificar las credenciales (en este ejemplo, usuario: "user", contraseña: "password")
 
-                    if (username == "Andrea" && password == "QAZpnm123@") {
+                    if (username == "Cliente" && password == "QAZpnm123@") {
 
                         // Credenciales correctas, iniciar la actividad del formulario
 
                         val intent = Intent(
-                            this@MainActivity,
-                            Calendario::class.java
+                            this@MainActivity, Calendario::class.java
                         )
                         startActivity(intent)
                     } else {
