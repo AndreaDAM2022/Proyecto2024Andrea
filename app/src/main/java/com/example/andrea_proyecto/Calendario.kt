@@ -2,6 +2,7 @@ package com.example.andrea_proyecto
 
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Bundle
@@ -25,6 +26,13 @@ class Calendario : AppCompatActivity() {
         calendarView = findViewById(R.id.calendarView)
         editTextCita = findViewById(R.id.editTextCita)
         buttonGuardar = findViewById(R.id.buttonGuardar)
+        var buttonVerCitas = findViewById<Button>(R.id.buttonVerCitas)
+        var boton = findViewById<Button>(R.id.buttonVolverr)
+
+        boton.setOnClickListener () {
+            val intent = Intent(this@Calendario, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         val dbHelper = DBHelper(this)
         database = dbHelper.writableDatabase
@@ -39,6 +47,13 @@ class Calendario : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Por favor, introduce una cita", Toast.LENGTH_SHORT).show()
             }
+        }
+
+
+
+        buttonVerCitas.setOnClickListener () {
+            val intent = Intent(this@Calendario, VerCitas::class.java)
+            startActivity(intent)
         }
 
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
