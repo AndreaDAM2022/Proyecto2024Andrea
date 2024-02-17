@@ -1,5 +1,6 @@
 package com.example.andrea_proyecto
 
+import VerCitas
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
@@ -28,6 +29,7 @@ class Calendario : AppCompatActivity() {
         buttonGuardar = findViewById(R.id.buttonGuardar)
         var buttonVerCitas = findViewById<Button>(R.id.buttonVerCitas)
         var boton = findViewById<Button>(R.id.buttonVolverr)
+        var buttonEliminarCita = findViewById<Button>(R.id.buttonEliminarCita)
 
         boton.setOnClickListener () {
             val intent = Intent(this@Calendario, MainActivity::class.java)
@@ -49,6 +51,18 @@ class Calendario : AppCompatActivity() {
             }
         }
 
+
+        buttonEliminarCita.setOnClickListener {
+            val selectedDate = calendarView.date
+            val selection = "${DBHelper.COLUMN_DATE} = ?"
+            val selectionArgs = arrayOf(selectedDate.toString())
+            val deletedRows = database.delete(DBHelper.TABLE_NAME, selection, selectionArgs)
+            if (deletedRows > 0) {
+                Toast.makeText(this, "Cita eliminada correctamente", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Error al eliminar la cita", Toast.LENGTH_SHORT).show()
+            }
+        }
 
 
         buttonVerCitas.setOnClickListener () {
