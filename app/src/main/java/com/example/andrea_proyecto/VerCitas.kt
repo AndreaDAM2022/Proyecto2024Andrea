@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.andrea_proyecto.R
 
 class VerCitas : AppCompatActivity() {
 
@@ -15,7 +16,7 @@ class VerCitas : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.çver_citas)
+        setContentView(R.layout.activity_ver_citas)
 
         listViewCitas = findViewById(R.id.listViewCitas)
         dbHelper = DBHelper(this)
