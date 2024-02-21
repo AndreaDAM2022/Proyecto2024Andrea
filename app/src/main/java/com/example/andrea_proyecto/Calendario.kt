@@ -1,6 +1,4 @@
 package com.example.andrea_proyecto
-
-import VerCitas
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
@@ -115,6 +113,8 @@ class Calendario : AppCompatActivity() {
             const val COLUMN_ID = "id"
             const val COLUMN_DATE = "fecha"
             const val COLUMN_CITA = "cita"
+
+
         }
     }
 }

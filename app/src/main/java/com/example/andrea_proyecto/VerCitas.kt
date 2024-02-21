@@ -1,86 +1,52 @@
-import android.content.Context
+package com.example.andrea_proyecto
+
 import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.andrea_proyecto.R
 
 class VerCitas : AppCompatActivity() {
 
     private lateinit var listViewCitas: ListView
-    private lateinit var dbHelper: DBHelper
+    private lateinit var dbHelper: Calendario.DBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ver_citas)
 
         listViewCitas = findViewById(R.id.listViewCitas)
-        dbHelper = DBHelper(this)
+        dbHelper = Calendario.DBHelper(this)
 
-        mostrarCitas()
+        val citasList = getCitasFromDatabase()
+        if (citasList.isNotEmpty()) {
+            val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, citasList)
+            listViewCitas.adapter = adapter
+        } else {
+            Toast.makeText(this, "No hay citas guardadas", Toast.LENGTH_SHORT).show()
+        }
     }
 
-
-    private fun mostrarCitas() {
+    private fun getCitasFromDatabase(): ArrayList<String> {
         val citasList = ArrayList<String>()
         val db = dbHelper.readableDatabase
-        val cursor: Cursor = db.rawQuery("SELECT * FROM ${DBHelper.TABLE_NAME}", null)
+        val cursor: Cursor = db.rawQuery("SELECT * FROM ${Calendario.DBHelper.TABLE_NAME}", null)
 
-        val columnIndexDate = cursor.getColumnIndex(DBHelper.COLUMN_DATE)
-        val columnIndexCita = cursor.getColumnIndex(DBHelper.COLUMN_CITA)
-
-        if (columnIndexDate != -1 && columnIndexCita != -1) {
-            while (cursor.moveToNext()) {
-                val fecha = cursor.getLong(columnIndexDate)
-                val cita = cursor.getString(columnIndexCita)
-                citasList.add("Fecha: $fecha - Cita: $cita")
-            }
-        } else {
-            // Columnas no encontradas en el cursor
-            // Manejar la situación, como lanzar una excepción o imprimir un mensaje de error
+        if (cursor.moveToFirst()) {
+            do {
+                val fechaIndex = cursor.getColumnIndexOrThrow(Calendario.DBHelper.COLUMN_DATE) - 1
+                val citaIndex = cursor.getColumnIndexOrThrow(Calendario.DBHelper.COLUMN_CITA) - 1
+                val fecha = cursor.getLong(fechaIndex)
+                val cita = cursor.getString(citaIndex)
+                val citaFormatted = "Fecha: $fecha - Cita: $cita"
+                citasList.add(citaFormatted)
+            } while (cursor.moveToNext())
         }
 
         cursor.close()
+        db.close()
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, citasList)
-        listViewCitas.adapter = adapter
-
-        if (citasList.isEmpty()) {
-            Toast.makeText(this, "No hay citas para mostrar", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    // Definición de la clase DBHelper
-    class DBHelper(context: Context) :
-        SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
-
-        override fun onCreate(db: SQLiteDatabase) {
-            val createTableSQL = """
-            CREATE TABLE $TABLE_NAME (
-                $COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                $COLUMN_DATE INTEGER,
-                $COLUMN_CITA TEXT
-            )
-        """.trimIndent()
-            db.execSQL(createTableSQL)
-        }
-
-        override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-            db.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
-            onCreate(db)
-        }
-
-        companion object {
-            const val DATABASE_NAME = "citas_db"
-            const val DATABASE_VERSION = 1
-            const val TABLE_NAME = "citas"
-            const val COLUMN_ID = "id"
-            const val COLUMN_DATE = "fecha"
-            const val COLUMN_CITA = "cita"
-        }
+        return citasList
     }
 }
