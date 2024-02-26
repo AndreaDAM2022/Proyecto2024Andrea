@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".Calendario">
+    tools:context="Calendario">
 
     <CalendarView
         android:id="@+id/calendarView"
@@ -13,10 +13,13 @@
 
     <EditText
         android:id="@+id/editTextCita"
-        android:layout_width="381dp"
-        android:layout_height="57dp"
+        android:layout_width="wrap_content"
+        android:layout_height="151dp"
         android:layout_below="@id/calendarView"
-        android:hint="Añadir cita" />
+        android:layout_marginTop="12dp"
+        android:background="@drawable/edit_text_border"
+        android:hint="Añadir cita"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     <Button
         android:id="@+id/buttonGuardar"

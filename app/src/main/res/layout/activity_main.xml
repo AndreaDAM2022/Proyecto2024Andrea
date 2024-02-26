@@ -1,49 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:orientation="vertical"
+    android:padding="16dp"
+     tools:context=".MainActivity">
+
 
     <ImageView
-        android:id="@+id/imageViewLogo"
-        android:layout_width="293dp"
-        android:layout_height="151dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:id="@+id/startImageView"
+        android:layout_width="369dp"
+        android:layout_height="319dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/andrea" />
 
     <EditText
-        android:id="@+id/User1"
-        android:layout_width="377dp"
-        android:layout_height="58dp"
-        android:layout_below="@id/imageViewLogo"
-        android:layout_marginTop="16dp"
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="Nombre de usuario"
-        android:inputType="text" />
+        android:inputType="text"/>
+
 
     <EditText
-        android:id="@+id/Password1"
-        android:layout_width="383dp"
-        android:layout_height="62dp"
-        android:layout_below="@id/User1"
-        android:layout_marginTop="16dp"
-        android:hint="Contraseña"
-        android:inputType="textPassword" />
-
-    <Button
-        android:id="@+id/buttonLogin"
+        android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Password1"
-        android:layout_marginTop="16dp"
-        android:text="Iniciar Sesión"/>
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonLogin"
         android:layout_marginTop="8dp"
-        android:text="Coger Cita" />
+        android:hint="Contraseña"
+        android:inputType="textPassword"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Iniciar sesión"/>
+
+
+    <Button
+        android:id="@+id/guestButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Iniciar sesión como invitado"/>
+
+</LinearLayout>
