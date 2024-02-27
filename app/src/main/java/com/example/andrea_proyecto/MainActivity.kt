@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var usernameEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
+    private lateinit var registerButton: Button
     private lateinit var guestButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         usernameEditText = findViewById(R.id.usernameEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
         loginButton = findViewById(R.id.loginButton)
+        registerButton = findViewById(R.id.registerButton)
         guestButton = findViewById(R.id.guestButton)
 
         loginButton.setOnClickListener {
@@ -28,14 +30,25 @@ class MainActivity : AppCompatActivity() {
             val password = passwordEditText.text.toString()
             if (username.isNotBlank() && password.isNotBlank()) {
                 // Aquí podrías realizar la autenticación con el nombre de usuario y contraseña
+                // Aquí deberías realizar la autenticación con tu lógica de base de datos o autenticación
+                // Si la autenticación es exitosa, podrías abrir la siguiente actividad o realizar otra acción
                 iniciarSesion(username)
             } else {
                 Toast.makeText(this, "Por favor, ingrese nombre de usuario y contraseña", Toast.LENGTH_SHORT).show()
             }
         }
 
+        registerButton.setOnClickListener {
+            // Acción para pasar a la actividad de registro
+            val intent = Intent(this, RegistroActivity::class.java)
+            startActivity(intent)
+        }
+
         guestButton.setOnClickListener {
-            // Si el usuario hace clic en "Iniciar sesión como invitado", se inicia sesión como invitado
+            // Si el usuario hace clic en "Ingresar como Invitado", se inicia sesión como invitado
+            // Esto podría simplemente abrir la actividad principal del calendario sin autenticación
+            // o con una cuenta de invitado predeterminada
+            // Aquí podrías abrir la siguiente actividad o realizar otra acción como invitado
             iniciarSesion("Invitado")
         }
     }

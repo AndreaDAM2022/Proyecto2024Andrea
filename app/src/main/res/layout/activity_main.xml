@@ -1,50 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-     tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
 
     <ImageView
-        android:id="@+id/startImageView"
-        android:layout_width="369dp"
-        android:layout_height="319dp"
-        android:layout_marginBottom="16dp"
+        android:id="@+id/logoImageView"
+        android:layout_width="match_parent"
+        android:layout_height="287dp"
         android:scaleType="centerCrop"
         android:src="@drawable/andrea" />
 
     <EditText
         android:id="@+id/usernameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nombre de usuario"
-        android:inputType="text"/>
-
+        android:layout_width="370dp"
+        android:layout_height="58dp"
+        android:layout_below="@id/logoImageView"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Nombre de Usuario"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/passwordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="375dp"
+        android:layout_height="57dp"
+        android:layout_below="@id/usernameEditText"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:hint="Contraseña"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Iniciar sesión"/>
+        android:layout_below="@id/passwordEditText"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="Iniciar Sesión" />
 
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginButton"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="Registrarse" />
 
     <Button
         android:id="@+id/guestButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Iniciar sesión como invitado"/>
+        android:layout_below="@id/registerButton"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="Ingresar como Invitado" />
 
-</LinearLayout>
+</RelativeLayout>
