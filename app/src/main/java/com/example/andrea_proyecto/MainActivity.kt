@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var loginButton: Button
     private lateinit var registerButton: Button
     private lateinit var guestButton: Button
+    private lateinit var databaseHelper: RegistroActivity.DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,39 +26,67 @@ class MainActivity : AppCompatActivity() {
         registerButton = findViewById(R.id.registerButton)
         guestButton = findViewById(R.id.guestButton)
 
+        databaseHelper = RegistroActivity.DatabaseHelper(this)
+
         loginButton.setOnClickListener {
             val username = usernameEditText.text.toString()
             val password = passwordEditText.text.toString()
             if (username.isNotBlank() && password.isNotBlank()) {
-                // Aquí podrías realizar la autenticación con el nombre de usuario y contraseña
-                // Aquí deberías realizar la autenticación con tu lógica de base de datos o autenticación
-                // Si la autenticación es exitosa, podrías abrir la siguiente actividad o realizar otra acción
-                iniciarSesion(username)
+                if (validarCredenciales(username, password)) {
+                    iniciarSesion(username)
+                } else {
+                    Toast.makeText(this, "Credenciales inválidas. Por favor, inténtelo de nuevo o regístrese.", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(this, "Por favor, ingrese nombre de usuario y contraseña", Toast.LENGTH_SHORT).show()
             }
         }
 
         registerButton.setOnClickListener {
-            // Acción para pasar a la actividad de registro
             val intent = Intent(this, RegistroActivity::class.java)
             startActivity(intent)
         }
 
         guestButton.setOnClickListener {
-            // Si el usuario hace clic en "Ingresar como Invitado", se inicia sesión como invitado
-            // Esto podría simplemente abrir la actividad principal del calendario sin autenticación
-            // o con una cuenta de invitado predeterminada
-            // Aquí podrías abrir la siguiente actividad o realizar otra acción como invitado
             iniciarSesion("Invitado")
+        }
+
+        var sobreNosotros = findViewById<Button>(R.id.NosotrosButton)
+        sobreNosotros.setOnClickListener {
+            val intent = Intent(this, SobreNosotros::class.java)
+            startActivity(intent)
         }
     }
 
+    private fun validarCredenciales(username: String, password: String): Boolean {
+        val db = databaseHelper.readableDatabase
+
+        val projection = arrayOf(RegistroActivity.DatabaseHelper.COLUMN_ID)
+
+        val selection = "${RegistroActivity.DatabaseHelper.COLUMN_NOMBRE} = ? AND ${RegistroActivity.DatabaseHelper.COLUMN_PASSWORD} = ?"
+        val selectionArgs = arrayOf(username, password)
+
+        val cursor = db.query(
+            RegistroActivity.DatabaseHelper.TABLE_NAME,
+            projection,
+            selection,
+            selectionArgs,
+            null,
+            null,
+            null
+        )
+
+        val count = cursor.count
+        cursor.close()
+        db.close()
+
+        return count > 0
+    }
+
     private fun iniciarSesion(username: String) {
-        // Aquí abrirías la actividad principal, pasando el nombre de usuario como extra si es necesario
         val intent = Intent(this, Calendario::class.java)
         intent.putExtra("username", username)
         startActivity(intent)
-        finish() // Opcional, dependiendo de si deseas que el usuario pueda volver a esta actividad con el botón de retroceso
+        finish()
     }
 }

@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".Calendario">
 
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:firstDayOfWeek="2"
+        android:showWeekNumber="false" />
 
     <EditText
         android:id="@+id/editTextCita"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/calendarView"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Ingrese la cita"
-        android:inputType="text" />
+        android:layout_marginTop="16dp"
+        android:hint="Introduce tu cita"
+        android:inputType="text"
+        android:padding="8dp" />
 
     <Button
         android:id="@+id/buttonGuardar"
@@ -27,25 +30,25 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextCita"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="Guardar Cita" />
-
-    <Button
-        android:id="@+id/buttonBorrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonGuardar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="Borrar Cita" />
+        android:layout_marginTop="16dp"
+        android:text="Guardar" />
 
     <Button
         android:id="@+id/buttonVerCitas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonBorrar"
+        android:layout_below="@id/buttonGuardar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="Ver Todas las Citas" />
+        android:layout_marginTop="16dp"
+        android:text="Ver Citas" />
+
+    <Button
+        android:id="@+id/buttonVolver"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonGuardar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="83dp"
+        android:text="Inicio" />
 
 </RelativeLayout>

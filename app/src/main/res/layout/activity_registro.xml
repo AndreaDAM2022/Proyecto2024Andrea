@@ -1,80 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
 
     <ImageView
-        android:id="@+id/imagenInicio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/edit_text_border"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
-
-
-    <TextView
-        android:id="@+id/fraseEsporadica"
+        android:id="@+id/headerImageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="¡Regístrate ahora!"
-        android:textSize="24sp"
-        android:textColor="@android:color/black"
-        android:layout_below="@id/imagenInicio"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_height="219dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/edit_text_border"
+        android:text="Tu frase aquí" />
 
-    <!-- Campos de registro -->
     <EditText
         android:id="@+id/nombreEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/fraseEsporadica"
-        android:layout_marginStart="20dp"
+        android:layout_width="385dp"
+        android:layout_height="61dp"
+        android:layout_below="@id/headerImageView"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Nombre" />
+        android:layout_centerHorizontal="true"
+        android:hint="Name" />
 
     <EditText
         android:id="@+id/emailEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="384dp"
+        android:layout_height="58dp"
         android:layout_below="@id/nombreEditText"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Correo Electrónico" />
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/passwordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="377dp"
+        android:layout_height="62dp"
         android:layout_below="@id/emailEditText"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Contraseña"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Password"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/registrarButton"
-        android:layout_width="match_parent"
+        android:layout_width="298dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/passwordEditText"
-        android:layout_marginStart="20dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="Registrar" />
+        android:text="Guardar Datos" />
 
     <Button
         android:id="@+id/volverButton"
-        android:layout_width="wrap_content"
+        android:layout_width="304dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/registrarButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="Volver al Inicio" />
+
 
 </RelativeLayout>

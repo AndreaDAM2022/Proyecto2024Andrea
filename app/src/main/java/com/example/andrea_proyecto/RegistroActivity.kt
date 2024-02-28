@@ -17,7 +17,6 @@ class RegistroActivity : AppCompatActivity() {
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var registrarButton: Button
-    private lateinit var volverButton: Button
     private lateinit var databaseHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +27,6 @@ class RegistroActivity : AppCompatActivity() {
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
         registrarButton = findViewById(R.id.registrarButton)
-        volverButton = findViewById(R.id.volverButton)
 
         databaseHelper = DatabaseHelper(this)
 
@@ -38,7 +36,7 @@ class RegistroActivity : AppCompatActivity() {
             val password = passwordEditText.text.toString()
 
             if (nombre.isNotBlank() && email.isNotBlank() && password.isNotBlank()) {
-                if (databaseHelper.insertCliente(nombre, email, password)) {
+                if (insertarCliente(nombre, email, password)) {
                     Toast.makeText(this, "Cliente registrado correctamente", Toast.LENGTH_SHORT).show()
                     // Aquí podrías realizar alguna acción adicional, como abrir otra actividad
                     finish()
@@ -50,12 +48,24 @@ class RegistroActivity : AppCompatActivity() {
             }
         }
 
-        volverButton.setOnClickListener {
-            // Acción para volver a la actividad principal
+        var Volver = findViewById<Button>(R.id.volverButton)
+        Volver.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish() // Finalizar la actividad actual
         }
+    }
+
+
+    private fun insertarCliente(nombre: String, email: String, password: String): Boolean {
+        val db = databaseHelper.writableDatabase
+        val values = ContentValues().apply {
+            put(DatabaseHelper.COLUMN_NOMBRE, nombre)
+            put(DatabaseHelper.COLUMN_EMAIL, email)
+            put(DatabaseHelper.COLUMN_PASSWORD, password)
+        }
+        val result = db.insert(DatabaseHelper.TABLE_NAME, null, values)
+        db.close()
+        return result != -1L
     }
 
     // Clase interna para la gestión de la base de datos SQLite
@@ -76,18 +86,6 @@ class RegistroActivity : AppCompatActivity() {
         override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
             db.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
             onCreate(db)
-        }
-
-        fun insertCliente(nombre: String, email: String, password: String): Boolean {
-            val db = this.writableDatabase
-            val values = ContentValues().apply {
-                put(COLUMN_NOMBRE, nombre)
-                put(COLUMN_EMAIL, email)
-                put(COLUMN_PASSWORD, password)
-            }
-            val result = db.insert(TABLE_NAME, null, values)
-            db.close()
-            return result != -1L
         }
 
         companion object {
