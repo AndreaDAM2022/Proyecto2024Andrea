@@ -4,12 +4,19 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+         />
+
     <ImageView
         android:id="@+id/headerImageView"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
+        android:layout_width="395dp"
+        android:layout_height="266dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/nails" />
+        android:src="@drawable/andrea" />
 
     <TextView
         android:id="@+id/phoneTextView"
@@ -32,22 +39,32 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/infoTextView"
+        android:id="@+id/horarioTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/whatsappTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="Información adicional sobre nuestros servicios."
+        android:text="Horario: Lunes a Viernes, 9:00 am - 22:00 pm"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/infoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/horarioTextView"
+        android:layout_marginTop="20dp"
+        android:text="Andrea Nails es una herramienta indispensable para cualquier persona que quiera mantener sus uñas impecables y seguir un régimen de cuidado adecuado. Diseñada con la comodidad y la practicidad en mente, nuestra aplicación facilita la gestión de citas para manicuras y pedicuras, garantizando que tus uñas luzcan increíbles en todo momento!"
+        android:textSize="18sp"
+        android:textStyle="italic" />
 
     <Button
         android:id="@+id/backToMainButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/infoTextView"
-        android:layout_marginTop="61dp"
         android:layout_centerHorizontal="true"
-        android:text="Volver al Main" />
+        android:layout_marginTop="52dp"
+        android:text="Volver al Inicio" />
 
 </RelativeLayout>

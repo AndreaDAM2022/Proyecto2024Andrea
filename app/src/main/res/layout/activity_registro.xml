@@ -4,23 +4,33 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-
     <ImageView
         android:id="@+id/headerImageView"
         android:layout_width="wrap_content"
         android:layout_height="219dp"
         android:scaleType="centerCrop"
         android:src="@drawable/edit_text_border"
-        android:text="Tu frase aquí" />
+         />
+
+    <TextView
+        android:id="@+id/headerTextView"
+        android:layout_width="351dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerImageView"
+        android:layout_marginTop="19dp"
+        android:padding="16dp"
+        android:text="Regístrate con Nosotros!"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="italic" />
 
     <EditText
         android:id="@+id/nombreEditText"
         android:layout_width="385dp"
         android:layout_height="61dp"
         android:layout_below="@id/headerImageView"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:hint="Name" />
+        android:layout_marginTop="95dp"
+        android:hint="Nombre" />
 
     <EditText
         android:id="@+id/emailEditText"
@@ -28,7 +38,6 @@
         android:layout_height="58dp"
         android:layout_below="@id/nombreEditText"
         android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
         android:hint="Email"
         android:inputType="textEmailAddress" />
 
@@ -37,9 +46,8 @@
         android:layout_width="377dp"
         android:layout_height="62dp"
         android:layout_below="@id/emailEditText"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:hint="Password"
+        android:layout_marginTop="16dp"
+        android:hint="Contraseña"
         android:inputType="textPassword" />
 
     <Button
@@ -48,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/passwordEditText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="Guardar Datos" />
 
     <Button
@@ -59,6 +67,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="Volver al Inicio" />
-
 
 </RelativeLayout>

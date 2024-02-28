@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class Calendario : AppCompatActivity() {
 
+
     private lateinit var calendarView: CalendarView
     private lateinit var editTextCita: EditText
     private lateinit var buttonGuardar: Button
@@ -72,7 +73,6 @@ class Calendario : AppCompatActivity() {
         super.onDestroy()
         database.close()
     }
-
     class DBHelper(context: Context) :
         SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 

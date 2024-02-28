@@ -29,7 +29,7 @@
         android:layout_height="67dp"
         android:layout_below="@id/headerTextView"
         android:layout_marginTop="10dp"
-        android:background="@drawable/fondo_boton"
+        android:background="@drawable/login"
         android:hint="                                Username"
         android:shadowColor="#E91E63"
         android:textColor="#E91E63"
@@ -42,7 +42,7 @@
         android:layout_height="61dp"
         android:layout_below="@id/usernameEditText"
         android:layout_marginTop="7dp"
-        android:background="@drawable/fondo_boton"
+        android:background="@drawable/login"
         android:hint="                                Password"
         android:inputType="textPassword"
         android:textColorHint="#E91E63" />

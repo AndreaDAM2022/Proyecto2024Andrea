@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
 import java.util.*
@@ -36,7 +35,6 @@ class VerCitas : AppCompatActivity() {
                 Calendario.DBHelper.COLUMN_ID,
                 Calendario.DBHelper.COLUMN_DATE,
                 Calendario.DBHelper.COLUMN_CITA
-
             ),
             null,
             null,
@@ -71,12 +69,6 @@ class VerCitas : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val buttonEliminar = findViewById<Button>(R.id.buttonVolver)
-
-        buttonEliminar.setOnClickListener {
-            val intent = Intent(this, EliminarCita::class.java)
-            startActivity(intent)
-        }
     }
 
 

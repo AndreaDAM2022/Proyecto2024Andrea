@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/fondo_vercitas">
 
     <TextView
         android:id="@+id/textViewTitulo"
@@ -16,28 +17,24 @@
 
     <ListView
         android:id="@+id/listViewCitas"
-        android:layout_width="wrap_content"
-        android:layout_height="514dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp" />
 
-    <Button
-        android:id="@+id/buttonVolver"
-        android:layout_width="105dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonGuardar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="83dp"
-        android:text="Inicio" />
+        android:orientation="horizontal"
+        android:gravity="center">
 
-    <Button
-        android:id="@+id/buttonEliminar"
-        android:layout_width="105dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonGuardar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="83dp"
-        android:text="Eliminar Cita" />
+        <Button
+            android:id="@+id/buttonVolver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inicio" />
+
+    </LinearLayout>
 
 </LinearLayout>
