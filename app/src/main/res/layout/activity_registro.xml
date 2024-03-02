@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="219dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/edit_text_border"
+        android:src="@drawable/fondo_registro"
          />
 
     <TextView
@@ -57,6 +57,7 @@
         android:layout_below="@id/passwordEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
+        android:backgroundTint="#009688"
         android:text="Guardar Datos" />
 
     <Button
@@ -66,6 +67,7 @@
         android:layout_below="@id/registrarButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:backgroundTint="#009688"
         android:text="Volver al Inicio" />
 
 </RelativeLayout>

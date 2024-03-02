@@ -11,6 +11,7 @@ import android.widget.CalendarView
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.util.Calendar
 
 class Calendario : AppCompatActivity() {
 
@@ -34,25 +35,43 @@ class Calendario : AppCompatActivity() {
         buttonGuardar.setOnClickListener {
             val date = calendarView.date
             val cita = editTextCita.text.toString()
+            val usuario = obtenerNombreUsuario()
+
             if (cita.isNotBlank()) {
-                guardarCita(date, cita)
-                editTextCita.text.clear()
-                Toast.makeText(this, "Cita guardada correctamente", Toast.LENGTH_SHORT).show()
+                if (esHoraDisponible(date)) {
+                    guardarCita(date, cita, usuario)
+                    editTextCita.text.clear()
+                    Toast.makeText(this, "Cita guardada correctamente", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "La hora seleccionada ya está ocupada, por favor elija otra", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(this, "Por favor, introduce una cita", Toast.LENGTH_SHORT).show()
             }
         }
 
-        calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            val selectedDate = "$dayOfMonth/${month + 1}/$year"
-            Toast.makeText(this, "Fecha seleccionada: $selectedDate", Toast.LENGTH_SHORT).show()
-        }
-        val buttonVerCitas = findViewById<Button>(R.id.buttonVerCitas)
 
-        buttonVerCitas.setOnClickListener {
-            val intent = Intent(this, VerCitas::class.java)
+        calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            val cal = Calendar.getInstance()
+            cal.set(year, month, dayOfMonth)
+            val selectedDate = cal.timeInMillis
+
+            // Pasar la fecha seleccionada a la actividad VerCitas
+            val intent = Intent(this@Calendario, VerCitas::class.java)
+            intent.putExtra("fecha_seleccionada", selectedDate)
             startActivity(intent)
         }
+        calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            val cal = Calendar.getInstance()
+            cal.set(year, month, dayOfMonth)
+            val selectedDate = cal.timeInMillis
+
+            // Abrir la actividad VerCitasDia y pasar la fecha seleccionada
+            val intent = Intent(this@Calendario, VerCitasDia::class.java)
+            intent.putExtra("fecha_seleccionada", selectedDate)
+            startActivity(intent)
+        }
+
         val buttonVolver = findViewById<Button>(R.id.buttonVolver)
 
         buttonVolver.setOnClickListener {
@@ -60,13 +79,44 @@ class Calendario : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    private fun esHoraDisponible(date: Long): Boolean {
+        val dbHelper = DBHelper(this)
+        val database = dbHelper.readableDatabase
 
-    private fun guardarCita(date: Long, cita: String) {
+        val query = "SELECT COUNT(*) FROM ${DBHelper.TABLE_NAME} WHERE ${DBHelper.COLUMN_DATE} = ?"
+        val cursor = database.rawQuery(query, arrayOf(date.toString()))
+
+        var count = 0
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                count = cursor.getInt(0)
+            }
+            cursor.close()
+        }
+
+        database.close()
+
+        // Si count es mayor que 0, significa que hay citas para esa hora
+        return count == 0
+    }
+
+    private fun guardarCita(date: Long, cita: String, usuario: String) {
         val values = ContentValues().apply {
-            put(DBHelper.COLUMN_DATE, date)
+            put(DBHelper.COLUMN_DATE, date) // Almacena la fecha en milisegundos
             put(DBHelper.COLUMN_CITA, cita)
+            put(DBHelper.COLUMN_USUARIO, usuario) // Almacena el nombre del usuario
         }
         database.insert(DBHelper.TABLE_NAME, null, values)
+
+        // Pasar la fecha seleccionada y el nombre del usuario a la actividad VerCitas
+        val intent = Intent(this, VerCitas::class.java)
+        intent.putExtra("fecha_seleccionada", date) // Pasar la fecha en milisegundos
+        intent.putExtra("nombre_usuario", usuario) // Pasar el nombre del usuario
+        startActivity(intent)
+    }
+    private fun obtenerNombreUsuario(): String {
+        val editTextNombreUsuario = findViewById<EditText>(R.id.editTextNombreUsuario)
+        return editTextNombreUsuario.text.toString()
     }
 
     override fun onDestroy() {

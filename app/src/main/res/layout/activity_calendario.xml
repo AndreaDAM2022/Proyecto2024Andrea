@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/calendario"
+    android:background="@drawable/fondo_calendario"
     tools:context=".Calendario">
 
     <CalendarView
@@ -16,40 +16,41 @@
         android:showWeekNumber="false" />
 
     <EditText
-        android:id="@+id/editTextCita"
+        android:id="@+id/editTextNombreUsuario"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="59dp"
         android:layout_below="@id/calendarView"
         android:layout_marginTop="16dp"
+        android:hint="Nombre de Usuario"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextCita"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_below="@id/editTextNombreUsuario"
+        android:layout_marginTop="16dp"
         android:hint="Introduce tu cita"
-        android:inputType="text"
-        android:padding="8dp" />
+        android:inputType="text" />
 
     <Button
         android:id="@+id/buttonGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Guardar"
         android:layout_below="@id/editTextCita"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Guardar" />
+        android:backgroundTint="#009688" />
 
     <Button
-        android:id="@+id/buttonVerCitas"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonVolver"
+        android:layout_width="101dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonGuardar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Ver Citas" />
-
-    <Button
-        android:id="@+id/buttonVolver"
-        android:layout_width="105dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonGuardar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="83dp"
+        android:backgroundTint="#009688"
         android:text="Inicio" />
 
 </RelativeLayout>

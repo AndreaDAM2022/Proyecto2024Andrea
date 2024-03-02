@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
-
+    android:padding="16dp"
+    android:background="@drawable/fondo_pag">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-         />
+        android:scaleType="centerCrop" />
 
     <ImageView
         android:id="@+id/headerImageView"
         android:layout_width="395dp"
         android:layout_height="266dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/andrea" />
+        android:src="@drawable/logo_nails" />
 
     <TextView
         android:id="@+id/phoneTextView"
@@ -25,8 +25,9 @@
         android:layout_below="@id/headerImageView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="Teléfono: +1234567890"
-        android:textSize="18sp" />
+        android:text="Teléfono de Contacto: +1234567890"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/whatsappTextView"
@@ -36,7 +37,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="WhatsApp: +666913656"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/horarioTextView"
@@ -46,17 +48,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="Horario: Lunes a Viernes, 9:00 am - 22:00 pm"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/infoTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="390dp"
+        android:layout_height="171dp"
         android:layout_below="@id/horarioTextView"
         android:layout_marginTop="20dp"
         android:text="Andrea Nails es una herramienta indispensable para cualquier persona que quiera mantener sus uñas impecables y seguir un régimen de cuidado adecuado. Diseñada con la comodidad y la practicidad en mente, nuestra aplicación facilita la gestión de citas para manicuras y pedicuras, garantizando que tus uñas luzcan increíbles en todo momento!"
         android:textSize="18sp"
-        android:textStyle="italic" />
+        android:textStyle="bold|italic" />
 
     <Button
         android:id="@+id/backToMainButton"
@@ -65,6 +68,8 @@
         android:layout_below="@+id/infoTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp"
-        android:text="Volver al Inicio" />
+        android:backgroundTint="#009688"
+        android:text="Volver al Inicio"
+        app:iconTint="#009688" />
 
 </RelativeLayout>

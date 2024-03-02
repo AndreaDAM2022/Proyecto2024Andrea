@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,10 +11,16 @@
         android:id="@+id/textViewTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="#02009688"
+        android:backgroundTint="#009688"
+        android:foregroundTint="#00009688"
         android:text="Citas del Usuario"
+        android:textColorHighlight="#00009688"
+        android:textColorHint="#00009688"
+        android:textColorLink="#009688"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/listViewCitas"
@@ -31,9 +38,28 @@
 
         <Button
             android:id="@+id/buttonVolver"
+            android:layout_width="99dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#009688"
+            android:text="Inicio"
+            android:textColor="#EFEAEA"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#009688"
+            app:iconTint="#009688" />
+
+        <Button
+            android:id="@+id/buttonVolverCalendario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Inicio" />
+            android:layout_marginStart="16dp"
+            android:text="Volver al Calendario"
+            android:textColor="#EFEAEA"
+            android:backgroundTint="#009688"
+            android:textColorHint="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#009688"
+            app:iconTint="#009688" />
 
     </LinearLayout>
 

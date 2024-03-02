@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="219dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/andrea" />
+        android:src="@drawable/logo_nails" />
 
     <TextView
         android:id="@+id/headerTextView"
@@ -29,12 +29,8 @@
         android:layout_height="67dp"
         android:layout_below="@id/headerTextView"
         android:layout_marginTop="10dp"
-        android:background="@drawable/login"
-        android:hint="                                Username"
-        android:shadowColor="#E91E63"
-        android:textColor="#E91E63"
-        android:textColorHint="#E91E63"
-        android:textColorLink="#E91E63" />
+        android:background="@drawable/fondo_botones_inicio"
+        android:hint="                                  Nombre" />
 
     <EditText
         android:id="@+id/passwordEditText"
@@ -42,10 +38,9 @@
         android:layout_height="61dp"
         android:layout_below="@id/usernameEditText"
         android:layout_marginTop="7dp"
-        android:background="@drawable/login"
-        android:hint="                                Password"
-        android:inputType="textPassword"
-        android:textColorHint="#E91E63" />
+        android:background="@drawable/fondo_botones_inicio"
+        android:hint="                               Contraseña"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/loginButton"
@@ -54,6 +49,7 @@
         android:layout_below="@id/passwordEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
+        android:backgroundTint="#009688"
         android:text="Coger Cita" />
 
     <Button
@@ -63,6 +59,7 @@
         android:layout_below="@id/loginButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
+        android:backgroundTint="#009688"
         android:text="Acceder como invitado/a" />
 
     <Button
@@ -72,6 +69,7 @@
         android:layout_below="@id/guestButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
+        android:backgroundTint="#009688"
         android:text="Registrate!" />
 
     <Button
@@ -81,6 +79,7 @@
         android:layout_below="@id/guestButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
+        android:backgroundTint="#009688"
         android:text="Sobre Nosotros!" />
 
 </RelativeLayout>
